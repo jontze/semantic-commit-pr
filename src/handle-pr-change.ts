@@ -2,11 +2,9 @@ import { Context } from "probot";
 
 import { isSemanticMessage } from "./is-semantic-commit.js";
 
-type PrOpenContext = Context<"pull_request.opened">;
-type PrSyncContext = Context<"pull_request.synchronize">;
-type PrReopenContext = Context<"pull_request.reopened">;
-
-type PrChangeContext = PrOpenContext | PrSyncContext | PrReopenContext;
+type PrChangeContext = Context<
+  "pull_request.opened" | "pull_request.synchronize" | "pull_request.reopened"
+>;
 
 interface Config {
   enabled: boolean;

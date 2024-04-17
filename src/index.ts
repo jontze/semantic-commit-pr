@@ -12,7 +12,7 @@ export default (app: Probot) => {
 
   app.on(
     ["pull_request.opened", "pull_request.edited", "pull_request.synchronize"],
-    handlePullRequestChange
+    (context: any) => handlePullRequestChange(context)
   );
   // For more information on building apps:
   // https://probot.github.io/docs/

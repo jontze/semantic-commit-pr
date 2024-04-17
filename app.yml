@@ -23,7 +23,7 @@ default_events:
   # - fork
   # - gollum
   # - issue_comment
-  - issues
+  # - issues
 # - label
 # - milestone
 # - member
@@ -35,7 +35,7 @@ default_events:
 # - project_card
 # - project_column
 # - public
-# - pull_request
+  - pull_request
 # - pull_request_review
 # - pull_request_review_comment
 # - push
@@ -62,7 +62,7 @@ default_permissions:
 
   # Repository contents, commits, branches, downloads, releases, and merges.
   # https://developer.github.com/v3/apps/permissions/#permission-on-contents
-  # contents: read
+  contents: read
 
   # Deployments and deployment statuses.
   # https://developer.github.com/v3/apps/permissions/#permission-on-deployments
@@ -70,11 +70,11 @@ default_permissions:
 
   # Issues and related comments, assignees, labels, and milestones.
   # https://developer.github.com/v3/apps/permissions/#permission-on-issues
-  issues: write
+  # issues: write
 
   # Search repositories, list collaborators, and access repository metadata.
   # https://developer.github.com/v3/apps/permissions/#metadata-permissions
-  metadata: read
+  # metadata: read
 
   # Retrieve Pages statuses, configuration, and builds, as well as create new builds.
   # https://developer.github.com/v3/apps/permissions/#permission-on-pages
@@ -82,7 +82,7 @@ default_permissions:
 
   # Pull requests and related comments, assignees, labels, milestones, and merges.
   # https://developer.github.com/v3/apps/permissions/#permission-on-pull-requests
-  # pull_requests: read
+  pull_requests: read
 
   # Manage the post-receive hooks for a repository.
   # https://developer.github.com/v3/apps/permissions/#permission-on-repository-hooks
@@ -98,7 +98,7 @@ default_permissions:
 
   # Commit statuses.
   # https://developer.github.com/v3/apps/permissions/#permission-on-statuses
-  # statuses: read
+  statuses: write
 
   # Organization members and teams.
   # https://developer.github.com/v3/apps/permissions/#permission-on-members
@@ -124,7 +124,7 @@ default_permissions:
   # https://developer.github.com/v3/apps/permissions/
   # organization_administration: read
 # The name of the GitHub App. Defaults to the name specified in package.json
-# name: My Probot App
+name: Conventional PR Commit Bot
 
 # The homepage of your GitHub App.
 # url: https://example.com/
@@ -134,4 +134,4 @@ default_permissions:
 
 # Set to true when your GitHub App is available to the public or false when it is only accessible to the owner of the app.
 # Default: true
-# public: false
+public: false

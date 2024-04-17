@@ -17,11 +17,12 @@
     "test": "vitest"
   },
   "dependencies": {
-    "parse-commit-message": "^4.0.0-canary.20",
-    "probot": "^13.0.1"
+    "conventional-commit-types": "^3.0.0",
+    "@jontze/parse-commit-message": "^5.1.0",
+    "probot": "^13.2.0"
   },
   "devDependencies": {
-    "@types/node": "^20.0.0",
+    "@types/node": "^20.12.7",
     "nock": "^14.0.0-beta.5",
     "smee-client": "^2.0.0",
     "typescript": "^5.3.3",
