@@ -1,6 +1,8 @@
-const commitTypes = Object.keys(require("conventional-commit-types").types);
+import conventionalCommits from "./conventional-commit-types.json" assert { type: "json" };
 import { validate } from "@jontze/parse-commit-message";
 import { isHeaderType } from "@jontze/parse-commit-message/utils";
+
+export const commitTypes = Object.keys(conventionalCommits.types);
 
 export const isSemanticMessage = (
   message: string,

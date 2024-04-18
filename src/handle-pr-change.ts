@@ -52,8 +52,13 @@ async function commitsAreSemantic(
 }
 
 export async function handlePullRequestChange(context: PrChangeContext) {
+  console.debug("PR Context: ", context);
+  console.debug("Repo: ", context.payload.repository.owner);
+  console.debug("Commits: ", context.payload.pull_request.commits_url);
   const { title, head } = context.payload.pull_request;
+
   const userConfig = await context.config<Config>("semantic.yml");
+  console.debug("Repo Config: ", userConfig);
   const noConfigProvided = userConfig == null;
   const {
     enabled,
@@ -68,7 +73,14 @@ export async function handlePullRequestChange(context: PrChangeContext) {
   } = { ...DEFAULT_OPTS, ...userConfig };
 
   const hasSemanticTitle = isSemanticMessage(title, scopes, types);
-  const commits = (await context.octokit.pulls.listCommits()).data;
+  const commits = (
+    await context.octokit.pulls.listCommits({
+      owner: context.payload.repository.owner.login,
+      repo: context.payload.repository.name,
+      pull_number: context.payload.pull_request.number,
+      per_page: 250,
+    })
+  ).data;
   const hasSemanticCommits = await commitsAreSemantic(
     commits,
     scopes,
@@ -99,7 +111,7 @@ export async function handlePullRequestChange(context: PrChangeContext) {
     isSemantic = hasSemanticTitle || hasSemanticCommits;
   }
 
-  const state = isSemantic ? "success" : "failure";
+  const check_state: "success" | "failure" = isSemantic ? "success" : "failure";
 
   function getDescription() {
     if (!enabled) return "skipped; check disabled in semantic.yml config";
@@ -123,7 +135,8 @@ export async function handlePullRequestChange(context: PrChangeContext) {
     owner: context.payload.repository.owner.login,
     repo: context.payload.repository.name,
     name: "Semantic Pull Request",
-    state,
+    status: "completed" as "completed",
+    conclusion: check_state,
     target_url: "https://github.com/probot/semantic-pull-requests",
     description: getDescription(),
   };

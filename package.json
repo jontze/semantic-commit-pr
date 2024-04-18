@@ -17,8 +17,7 @@
     "test": "vitest"
   },
   "dependencies": {
-    "conventional-commit-types": "^3.0.0",
-    "@jontze/parse-commit-message": "^5.1.0",
+    "@jontze/parse-commit-message": "^5.1.1",
     "probot": "^13.2.0"
   },
   "devDependencies": {
