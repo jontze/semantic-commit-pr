@@ -1,11 +1,11 @@
 {
-  "name": "semantic-commit-pr",
+  "name": "@jontze/semantic-commit-pr",
   "version": "1.0.0",
   "private": true,
-  "description": "A Probot app",
-  "author": "jontze",
+  "description": "A Probot to check PRs for Conventional Commits",
+  "author": "jontze <dev@jontze.com>",
   "license": "ISC",
-  "homepage": "https://github.com//",
+  "homepage": "https://github.com/jontze/semantic-commit-pr",
   "keywords": [
     "probot",
     "github",
@@ -13,8 +13,10 @@
   ],
   "scripts": {
     "build": "tsc",
+    "format": "prettier -c .prettierrc.json --write .",
+    "format:check": "prettier -c .prettierrc.json --check",
     "prestart": "npm run build",
-    "start": "probot run ./lib/index.js",
+    "start": "probot run ./lib/esm/index.js",
     "test": "vitest"
   },
   "dependencies": {
@@ -24,6 +26,7 @@
   "devDependencies": {
     "@types/node": "^20.12.7",
     "nock": "^14.0.0-beta.5",
+    "prettier": "^3.2.5",
     "smee-client": "^2.0.0",
     "typescript": "^5.3.3",
     "vitest": "^1.3.1"
@@ -31,5 +34,11 @@
   "engines": {
     "node": ">= 18"
   },
-  "type": "module"
+  "type": "module",
+  "module": "lib/esm/index.js",
+  "exports": {
+    ".": {
+      "import": "./lib/esm/index.js"
+    }
+  }
 }

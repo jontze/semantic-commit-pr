@@ -9,7 +9,7 @@ export const isSemanticResult = (
   hasSemanticCommits: boolean,
   hasSemanticTitle: boolean,
   hasOnlySingleNonMergeCommit: boolean,
-  config: Config
+  config: Config,
 ): boolean => {
   let isSemantic = false;
 
@@ -37,19 +37,13 @@ export const areCommitsSemantic = async (
   types?: string[],
   allCommits?: boolean,
   allowMergeCommits?: boolean,
-  allowRevertCommits?: boolean
+  allowRevertCommits?: boolean,
 ): Promise<boolean> => {
   return commits
     .map((element) => element.commit)
-    [allCommits ? "every" : "some"]((commit) =>
-      isSemanticMessage(
-        commit.message,
-        scopes,
-        types,
-        allowMergeCommits,
-        allowRevertCommits
-      )
-    );
+    [
+      allCommits ? "every" : "some"
+    ]((commit) => isSemanticMessage(commit.message, scopes, types, allowMergeCommits, allowRevertCommits));
 };
 
 export const isSemanticMessage = (
@@ -57,7 +51,7 @@ export const isSemanticMessage = (
   validScopes?: string[],
   validTypes?: string[],
   allowMergeCommits?: boolean,
-  allowRevertCommits?: boolean
+  allowRevertCommits?: boolean,
 ): boolean => {
   const isMergeCommit = message && message.startsWith("Merge");
   if (allowMergeCommits && isMergeCommit) return true;

@@ -16,7 +16,7 @@ const createPrCheckDescription = (
   hasSemanticTitle: boolean,
   hasSemanticCommits: boolean,
   hasOnlySingleNonMergeCommit: boolean,
-  config: Config
+  config: Config,
 ): string => {
   if (!config.enabled) {
     return "skipped; check disabled in semantic.yml config";
@@ -51,7 +51,7 @@ export const createCheck = async (
     isDone: boolean;
     description: string;
     conclusion?: "success" | "failure";
-  }
+  },
 ): Promise<void> => {
   if (isDone && !conclusion) {
     throw new Error("conclusion must be provided when isDone is true");
@@ -79,7 +79,7 @@ export const createCheck = async (
           ...baseStatus,
           status: "in_progress",
           started_at: new Date().toISOString(),
-        }
+        },
   );
 };
 
@@ -98,7 +98,7 @@ export async function handlePullRequestChange(context: PrChangeContext) {
     const hasSemanticTitle = isSemanticMessage(
       context.payload.pull_request.title,
       config.scopes,
-      config.types
+      config.types,
     );
     const commits = (
       await context.octokit.pulls.listCommits({
@@ -114,7 +114,7 @@ export async function handlePullRequestChange(context: PrChangeContext) {
       config.types,
       (config.commitsOnly || config.titleAndCommits) && !config.anyCommit,
       config.allowMergeCommits,
-      config.allowRevertCommits
+      config.allowRevertCommits,
     );
     const hasOnlySingleNonMergeCommit =
       commits.filter((element) => !element.commit.message.startsWith("Merge"))
@@ -124,7 +124,7 @@ export async function handlePullRequestChange(context: PrChangeContext) {
       hasSemanticCommits,
       hasSemanticTitle,
       hasOnlySingleNonMergeCommit,
-      config
+      config,
     );
 
     const description = createPrCheckDescription(
@@ -132,7 +132,7 @@ export async function handlePullRequestChange(context: PrChangeContext) {
       hasSemanticTitle,
       hasSemanticCommits,
       hasOnlySingleNonMergeCommit,
-      config
+      config,
     );
     await createCheck(context, {
       isDone: true,

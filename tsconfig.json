@@ -5,7 +5,7 @@
     "module": "NodeNext",
     "declaration": true,
     "sourceMap": true,
-    "outDir": "./lib",
+    "outDir": "./lib/esm",
 
     /* Strict Type-Checking Options */
     "strict": true,
@@ -13,9 +13,14 @@
     /* Additional Checks */
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "noImplicitAny": true,
+    "noImplicitThis": true,
+    "useUnknownInCatchVariables": true,
+    "alwaysStrict": true,
     "noImplicitReturns": true,
     "noFallthroughCasesInSwitch": true,
     "noUncheckedIndexedAccess": true,
+    "noImplicitOverride": true,
 
     "resolveJsonModule": true,
     "moduleResolution": "NodeNext",
