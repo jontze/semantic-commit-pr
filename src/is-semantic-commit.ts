@@ -1,8 +1,56 @@
 import conventionalCommits from "./conventional-commit-types.json" assert { type: "json" };
 import { validate } from "@jontze/parse-commit-message";
 import { isHeaderType } from "@jontze/parse-commit-message/utils";
+import { Config } from "./config.js";
 
 export const commitTypes = Object.keys(conventionalCommits.types);
+
+export const isSemanticResult = (
+  hasSemanticCommits: boolean,
+  hasSemanticTitle: boolean,
+  hasOnlySingleNonMergeCommit: boolean,
+  config: Config
+): boolean => {
+  let isSemantic = false;
+
+  if (!config.enabled) {
+    isSemantic = true;
+  } else if (config.titleOnly) {
+    isSemantic = hasSemanticTitle;
+  } else if (config.commitsOnly) {
+    isSemantic = hasSemanticCommits;
+  } else if (config.titleAndCommits) {
+    isSemantic = hasSemanticTitle && hasSemanticCommits;
+  } else if (hasOnlySingleNonMergeCommit) {
+    // Watch out for cases where there's only commit and it's not semantic.
+    // GitHub won't squash PRs that have only one commit.
+    isSemantic = hasSemanticCommits;
+  } else {
+    isSemantic = hasSemanticTitle || hasSemanticCommits;
+  }
+  return isSemantic;
+};
+
+export const areCommitsSemantic = async (
+  commits: { commit: { message: string } }[],
+  scopes?: string[],
+  types?: string[],
+  allCommits?: boolean,
+  allowMergeCommits?: boolean,
+  allowRevertCommits?: boolean
+): Promise<boolean> => {
+  return commits
+    .map((element) => element.commit)
+    [allCommits ? "every" : "some"]((commit) =>
+      isSemanticMessage(
+        commit.message,
+        scopes,
+        types,
+        allowMergeCommits,
+        allowRevertCommits
+      )
+    );
+};
 
 export const isSemanticMessage = (
   message: string,
