@@ -19,7 +19,7 @@ jobs:
       - name: Install dependencies
         run: npm ci
       - name: Check Formating
-        run: npm run format:check      
+        run: npm run format:check
       - name: Build dist
         run: npm run build
       - name: Upload Build Artifact
