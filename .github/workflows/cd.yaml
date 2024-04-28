@@ -21,11 +21,11 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - build
-    steps:              
+    steps:
       - name: Download Build Artifact
         uses: actions/download-artifact@v4
         with:
-          name: lib-artifact-${{ github.sha }}          
+          name: lib-artifact-${{ github.sha }}
       - name: Publish Artifact to NPM Registry
         run: npm publish
       - name: Create GH Release
