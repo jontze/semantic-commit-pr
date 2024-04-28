@@ -40,6 +40,7 @@
   ],
   "type": "module",
   "module": "lib/esm/index.js",
+  "types": "lib/esm/index.d.ts",
   "exports": {
     ".": {
       "import": "./lib/esm/index.js"
