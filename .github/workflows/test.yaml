@@ -31,5 +31,7 @@ jobs:
           name: lib-artifact-${{ github.sha }}
           path: |
             lib
+            .npmrc
+            .nvmrc
             package.json
           if-no-files-found: error
