@@ -4,37 +4,34 @@ on:
     tags:
       - v*
 
-permissions:
-  contents: write
-  packages: write
-
 jobs:
   build:
+    permissions:
+      contents: read
+      packages: read
     name: Build
     uses: ./.github/workflows/test.yaml
 
   deploy:
+    permissions:
+      contents: write
+      packages: write
     name: Deploy
     runs-on: ubuntu-latest
     needs:
       - build
-    steps:
-      - uses: actions/checkout@v4
+    steps:      
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version-file: ".nvmrc"
-          cache: "npm"
-          registry-url: https://npm.pkg.github.com/
+          cache: "npm"          
       - name: Download Build Artifact
         uses: actions/download-artifact@v4
         with:
-          name: lib-dist-artifact-${{ github.sha }}
-          path: dist
-      - name: Publish to GitHub Packages
+          name: lib-artifact-${{ github.sha }}          
+      - name: Publish Artifact to NPM Registry
         run: npm publish
-        env:
-          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Create GH Release
         uses: softprops/action-gh-release@v2
         with:
