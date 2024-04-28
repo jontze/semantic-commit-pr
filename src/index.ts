@@ -1,8 +1,8 @@
-import { Probot } from "probot";
+import { Probot, ApplicationFunction } from "probot";
 
 import { handlePullRequestChange } from "./handle-pr-change.js";
 
-export default (app: Probot) => {
+const appFn: ApplicationFunction = (app: Probot) => {
   app.on(
     ["pull_request.opened", "pull_request.edited", "pull_request.synchronize"],
     async (context: any) => await handlePullRequestChange(context),
@@ -13,3 +13,5 @@ export default (app: Probot) => {
   // To get your app running against GitHub, see:
   // https://probot.github.io/docs/development/
 };
+
+export default appFn;
