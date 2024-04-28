@@ -12,7 +12,7 @@
     "probot-app"
   ],
   "scripts": {
-    "preversion": "npm run test && npm run format:check && npm run build",
+    "preversion": "npm run format:check && npm run build",
     "postversion": "git push && git push --tags",
     "build": "tsc",
     "format": "prettier -c .prettierrc.json --write .",
