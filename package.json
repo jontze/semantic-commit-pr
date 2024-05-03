@@ -17,20 +17,16 @@
     "format": "prettier -c .prettierrc.json --write .",
     "format:check": "prettier -c .prettierrc.json --check",
     "prestart": "npm run build",
-    "start": "probot run ./lib/esm/index.js",
-    "test": "vitest"
+    "start": "probot run ./lib/esm/index.js"
   },
   "dependencies": {
     "@jontze/parse-commit-message": "^5.1.1",
-    "probot": "^13.2.0"
+    "probot": "^13.2.1"
   },
   "devDependencies": {
     "@types/node": "^20.12.7",
-    "nock": "^14.0.0-beta.5",
     "prettier": "^3.2.5",
-    "smee-client": "^2.0.0",
-    "typescript": "^5.3.3",
-    "vitest": "^1.3.1"
+    "typescript": "^5.3.3"
   },
   "engines": {
     "node": ">= 18"
