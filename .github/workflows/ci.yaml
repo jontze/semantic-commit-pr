@@ -1,20 +1,23 @@
-name: CI
+name: Main CI
 on:
   push:
     branches:
       - main
-  pull_request:
-    branches:
-      - main
-    types:
-      - opened
-      - synchronize
-      - reopened
 
 permissions:
   contents: read
   packages: read
 
 jobs:
-  test:
+  build:
+    name: Build
     uses: ./.github/workflows/test.yaml
+
+  trigger-release:
+    name: Next Release
+    runs-on: ubuntu-latest
+    needs:
+      - build
+    steps:
+      - name: Print next version
+        run: echo ${{ needs.build.outputs.version }}

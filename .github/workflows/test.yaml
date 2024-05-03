@@ -1,6 +1,10 @@
 name: Test
 on:
   workflow_call:
+    outputs:
+      version:
+        description: "The next version to be released"
+        value: ${{ jobs.version.outputs.next }}
 
 permissions:
   contents: read
@@ -35,3 +39,19 @@ jobs:
             .nvmrc
             package.json
           if-no-files-found: error
+
+  version:
+    name: Version
+    runs-on: ubuntu-latest
+    outputs:
+      next: ${{ steps.next.outputs.version }}
+    steps:
+      - uses: actions/checkout@v4
+      - name: Setup Conventional Versioning
+        uses: jontze/.workflows/setup-conventional-versioning@main
+        with:
+          version: v0.2.2
+      - name: Specify next version
+        id: next
+        run: |
+          echo "version=$(conventional-versioning -o plain)" >> $GITHUB_OUTPUT

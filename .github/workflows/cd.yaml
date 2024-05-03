@@ -21,7 +21,9 @@ jobs:
     runs-on: ubuntu-latest
     needs:
       - build
-    steps:      
+    steps:
+      - name: Print next version
+        run: echo ${{ needs.build.outputs.version }} && echo ${{ needs.test.outputs.version }}
       - name: Download Build Artifact
         uses: actions/download-artifact@v4
         with:
@@ -29,7 +31,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version-file: ".nvmrc"          
+          node-version-file: ".nvmrc"
       - name: Publish Artifact to NPM Registry
         run: npm publish
         env:
