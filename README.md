@@ -7,8 +7,8 @@ used in Probot Apps to analyze the commits in PRs to determine if they follow
 the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
 specification.
 
-This project is based and heavily inspired by (zeke's Probot
-App)[https://github.com/zeke/semantic-pull-requests] that sadly is no longer
+This project is based and heavily inspired by [zeke's Probot
+App](https://github.com/zeke/semantic-pull-requests) that sadly is no longer
 maintained.
 
 > **Note:** I wrote this mainly for my own personal use. If you want to use it
