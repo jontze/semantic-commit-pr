@@ -47,6 +47,9 @@ jobs:
       next: ${{ steps.next.outputs.version }}
     steps:
       - uses: actions/checkout@v4
+        with:
+          # Include tags so that the version can be determined
+          fetch-depth: 0
       - name: Setup Conventional Versioning
         uses: jontze/.workflows/setup-conventional-versioning@main
         with:
