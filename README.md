@@ -1,32 +1,35 @@
-# semantic-commit-pr
+# Semantic Commit Analyzer for PRs
 
-> A GitHub App built with [Probot](https://github.com/probot/probot) that A Probot app
+> A GitHub App built with [Probot](https://github.com/probot/probot)
 
-## Setup
+This is a library that exposes a single Probot Application function that can be
+used in Probot Apps to analyze the commits in PRs to determine if they follow
+the [Conventional Commits](https://www.conventionalcommits.org/en/v1.0.0/)
+specification.
 
-```sh
-# Install dependencies
-npm install
+This project is based and heavily inspired by (zeke's Probot
+App)[https://github.com/zeke/semantic-pull-requests] that sadly is no longer
+maintained.
 
-# Run the bot
-npm start
+> **Note:** I wrote this mainly for my own persnal use. If you want to use it in
+> production, it might eat your laundry. Do it at your own risk.
+
+## Usage
+
+```typescript
+import SemanticCommitPR from "@jontze/semantic-commit-pr";
+import { createProbot } from "probot";
+
+// https://probot.github.io/docs/development/#run-probot-programmatically
+
+// Choose your way to instantiate Probot
+const probotApp = createProbot();
+
+// Load the Application Function into your App
+probotApp.load(SemanticCommitPR);
+
+// Start your Probot App
 ```
-
-## Docker
-
-```sh
-# 1. Build container
-docker build -t semantic-commit-pr .
-
-# 2. Start container
-docker run -e APP_ID=<app-id> -e PRIVATE_KEY=<pem-value> semantic-commit-pr
-```
-
-## Contributing
-
-If you have suggestions for how semantic-commit-pr could be improved, or want to report a bug, open an issue! We'd love all and any contributions.
-
-For more, check out the [Contributing Guide](CONTRIBUTING.md).
 
 ## License
 
