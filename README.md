@@ -11,8 +11,8 @@ This project is based and heavily inspired by (zeke's Probot
 App)[https://github.com/zeke/semantic-pull-requests] that sadly is no longer
 maintained.
 
-> **Note:** I wrote this mainly for my own persnal use. If you want to use it in
-> production, it might eat your laundry. Do it at your own risk.
+> **Note:** I wrote this mainly for my own personal use. If you want to use it
+> in production, it might eat your laundry. Do it at your own risk.
 
 ## Usage
 
