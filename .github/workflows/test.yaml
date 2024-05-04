@@ -50,6 +50,8 @@ jobs:
         with:
           # Include tags so that the version can be determined
           fetch-depth: 0
+      - name: Fetch tags
+        run: git fetch --tags
       - name: Setup Conventional Versioning
         uses: jontze/.workflows/setup-conventional-versioning@main
         with:
