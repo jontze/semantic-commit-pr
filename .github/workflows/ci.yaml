@@ -4,20 +4,32 @@ on:
     branches:
       - main
 
-permissions:
-  contents: read
-  packages: read
-
 jobs:
   build:
+    permissions:
+      contents: read
+      packages: read
     name: Build
     uses: ./.github/workflows/test.yaml
 
   trigger-release:
+    permissions:
+      contents: write
+      packages: read
     name: Next Release
     runs-on: ubuntu-latest
     needs:
       - build
     steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          cache: "npm"
+          node-version-file: ".nvmrc"
       - name: Print next version
         run: echo ${{ needs.build.outputs.version }}
+      - name: Set Package Version
+        run: |
+          npm version ${{ needs.build.outputs.version }}
