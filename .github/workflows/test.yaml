@@ -1,6 +1,12 @@
 name: Test
 on:
   workflow_call:
+    inputs:
+      check-version:
+        description: "Check the next version"
+        required: false
+        default: true
+        type: boolean
     outputs:
       version:
         description: "The next version to be released"
@@ -41,6 +47,7 @@ jobs:
           if-no-files-found: error
 
   version:
+    if: ${{ inputs.check-version }}
     name: Version
     runs-on: ubuntu-latest
     outputs:
