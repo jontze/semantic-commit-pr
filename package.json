@@ -11,7 +11,6 @@
     "probot-app"
   ],
   "scripts": {
-    "preversion": "npm run format:check && npm run build",
     "build": "tsc",
     "format": "prettier -c .prettierrc.json --write .",
     "format:check": "prettier -c .prettierrc.json --check",
