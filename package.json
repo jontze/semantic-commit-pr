@@ -18,7 +18,9 @@
     "start": "probot run ./lib/esm/index.js"
   },
   "dependencies": {
-    "@jontze/parse-commit-message": "^5.1.1",
+    "@jontze/parse-commit-message": "^5.1.1"
+  },
+  "peerDependencies": {
     "probot": "^13.2.2"
   },
   "devDependencies": {
