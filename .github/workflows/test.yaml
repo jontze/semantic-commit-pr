@@ -39,6 +39,7 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: lib-artifact-${{ github.sha }}
+          include-hidden-files: true
           path: |
             lib
             .npmrc
