@@ -18,18 +18,18 @@
     "start": "probot run ./lib/esm/index.js"
   },
   "dependencies": {
-    "@jontze/parse-commit-message": "^5.1.1"
+    "@jontze/parse-commit-message": "^5.1.2"
   },
   "peerDependencies": {
-    "probot": "^13.2.2"
+    "probot": "^13.3.9"
   },
   "devDependencies": {
     "@types/node": "^22.8.6",
     "prettier": "^3.3.3",
-    "typescript": "^5.5.4"
+    "typescript": "^5.6.3"
   },
   "engines": {
-    "node": ">= 18"
+    "node": ">=20"
   },
   "files": [
     "lib"
