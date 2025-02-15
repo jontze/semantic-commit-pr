@@ -1,6 +1,6 @@
 {
   "name": "@jontze/semantic-commit-pr",
-  "version": "2.0.4",
+  "version": "2.0.5",
   "description": "A Probot to check PRs for Conventional Commits",
   "author": "jontze <dev@jontze.com>",
   "license": "ISC",
