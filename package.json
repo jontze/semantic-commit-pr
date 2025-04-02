@@ -24,7 +24,7 @@
     "probot": "^13.3.9"
   },
   "devDependencies": {
-    "@types/node": "^22.13.14",
+    "@types/node": "^22.13.16",
     "prettier": "^3.5.3",
     "typescript": "^5.7.3"
   },
