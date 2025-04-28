@@ -1,4 +1,4 @@
-import conventionalCommits from "./conventional-commit-types.json" assert { type: "json" };
+import conventionalCommits from "./conventional-commit-types.json" with { type: "json" };
 import { validate } from "@jontze/parse-commit-message";
 import { isHeaderType } from "@jontze/parse-commit-message/utils";
 import { Config } from "./config.js";
