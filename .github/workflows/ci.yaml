@@ -31,7 +31,7 @@ jobs:
       - name: Set Package Version
         run: |
           npm version ${{ needs.build.outputs.version }} --no-git-tag-version --allow-same-version
-      - uses: stefanzweifel/git-auto-commit-action@v5
+      - uses: stefanzweifel/git-auto-commit-action@v6
         id: commit
         with:
           commit_message: "chore(version): Bump version to ${{ needs.build.outputs.version }}"
