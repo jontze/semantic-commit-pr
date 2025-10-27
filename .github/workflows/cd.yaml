@@ -25,7 +25,7 @@ jobs:
       - build
     steps:
       - name: Download Build Artifact
-        uses: actions/download-artifact@v5
+        uses: actions/download-artifact@v6
         with:
           name: lib-artifact-${{ github.sha }}
       - name: Setup Node.js
