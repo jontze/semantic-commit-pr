@@ -63,7 +63,7 @@ export const createCheck = async (
     repo: context.payload.repository.name,
     name: "Semantic Pull Request",
   };
-  await context.octokit.checks.create(
+  await context.octokit.rest.checks.create(
     isDone
       ? {
           ...baseStatus,
@@ -101,7 +101,7 @@ export async function handlePullRequestChange(context: PrChangeContext) {
       config.types,
     );
     const commits = (
-      await context.octokit.pulls.listCommits({
+      await context.octokit.rest.pulls.listCommits({
         owner: context.payload.repository.owner.login,
         repo: context.payload.repository.name,
         pull_number: context.payload.pull_request.number,
